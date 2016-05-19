@@ -1,0 +1,2 @@
+[alias]
+  lad = log --pretty=format:'%C(yellow)%h%Creset %s %C(dim red)by %aN%Creset %C(bold cyan)%ar%Creset' --graph
