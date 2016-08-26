@@ -335,7 +335,7 @@ let g:indent_guides_color_change_percent  = 30
 let g:indent_guides_guide_size            = 1
 
 " completion
-Plug 'Shougo/neocomplete'
+" Plug 'Shougo/neocomplete'
 " note: this option must set it in .vimrc(_vimrc).
 " not in .gvimrc(_gvimrc)!
 " disable autocomplpop.
@@ -739,7 +739,7 @@ set directory=~/.vim/swap
 
 " folding
 " zc: close, zo: open, zC: close all, zO: open all
-set foldmethod=syntax
+" set foldmethod=syntax
 set foldlevel=100
 
 " ファイル間移動
@@ -784,7 +784,7 @@ noremap <leader>6 6gt
 noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
-noremap <leader>h gT
+noremap h gT
 noremap <leader>j :tabfirst<cr>
 noremap <leader>k :tablast<cr>
-noremap <leader>l gt
+noremap l gt
