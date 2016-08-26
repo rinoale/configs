@@ -785,6 +785,6 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap h gT
-noremap <leader>j :tabfirst<cr>
-noremap <leader>k :tablast<cr>
+noremap j :wincmd h<cr>
+noremap k :wincmd l<cr>
 noremap l gt
