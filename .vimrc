@@ -816,3 +816,7 @@ nmap <silent>bf :bf<CR>
 nmap <silent>bl :bl<CR>
 nmap <silent>bm :bm<CR>
 nmap <silent>bd :bdelete<CR>
+
+" switching tabs
+map <C-Left> <Esc>:tabprev<CR>
+map <C-Right> <Esc>:tabnext<CR>
