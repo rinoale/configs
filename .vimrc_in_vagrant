@@ -642,6 +642,9 @@ map <silent> tt :TagbarToggle<CR>
 " " \lでtaglistウインドウを開いたり閉じたり出来るショートカット
 " map <silent> <C-l> :TlistToggle<CR>
 
+" Plug 'vim-airline/vim-airline'
+" let g:airline#extensions#tabline#enabled = 1
+
 call plug#end()
 
 " 読み込んだプラグインも含め、ファイルタイプを検出、
