@@ -660,6 +660,7 @@ let g:buffergator_autodismiss_on_select = 0
 "   n/N : No split, uses existing window
 let g:buffergator_viewport_split_policy = "B"
 let g:buffergator_hsplit_size = 10
+let g:buffergator_autoupdate = 1
 
 map <C-b> :BuffergatorToggle<CR>
 
