@@ -1,4 +1,5 @@
 [alias]
   lad = log --pretty=format:'%C(yellow)%h%Creset %s %C(dim red)by %aN%Creset %C(bold cyan)%ar%Creset' --graph
+  ln = "!f() { git lad --no-merges "$1" | awk '{printf(\"%d \", NR)} { for ( x=1 ; x<=NF ; x++  ) { printf(\"%s \",$x)  } print \"\"  }'; }; f"
 [core]
         editor = vim
