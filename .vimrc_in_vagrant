@@ -5,11 +5,11 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 " https://github.com/itchyny/dictionary.vim
-Plug 'itchyny/dictionary.vim'
-map <silent> ,d :Dictionary<Enter>
+" Plug 'itchyny/dictionary.vim'
+" map <silent> ,d :Dictionary<Enter>
 
 " https://github.com/vim-jp/vimdoc-ja
-Plug 'vim-jp/vimdoc-ja'
+" Plug 'vim-jp/vimdoc-ja'
 
 " https://github.com/ConradIrwin/vim-bracketed-paste
 Plug 'ConradIrwin/vim-bracketed-paste'
