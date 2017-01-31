@@ -719,7 +719,7 @@ set smartcase
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
 " 折り返しをしない。
-set nowrap
+set wrap
 " オートインデントを使用するため必要
 set nopaste
 " 行番号を表示する。
