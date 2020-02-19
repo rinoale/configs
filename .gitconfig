@@ -3,5 +3,6 @@
   lad = log --pretty=format:'%C(yellow)%h%Creset %s %C(dim red)by %aN%Creset %C(bold cyan)%ar%Creset' --graph
   ln = "!f() { git lam --no-merges "$1" | awk '{printf(\"%-3d \", NR)} { for ( x=1 ; x<=NF ; x++  ) { printf(\"%s \",$x)  } print \"\"  }'; }; f"
   ff = "!func() { git grep -n \"def "$1"\" | awk '{ split($0, path_and_func, \":\"); file_path=path_and_func[1]; print \"+\"path_and_func[2]\" \"file_path; match(path_and_func[3], /(.*)def/); indented_end = substr(path_and_func[3], RSTART, RLENGTH); gsub(\"def\", \"end\", indented_end); command=\"sed -n -e \\\"/\"path_and_func[3]\"/, /^\"indented_end\"/ p\\\" \"file_path\"\"; system(command) }'; }; func"
+  stager = "!f() { git diff --name-only | awk '{ filename=$0; system(\"git diff \"$0); printf \"Stage this change?(y/n):\"; getline name < \"/dev/tty\"; if(name == \"y\") { system(\"git add \"filename) }; }'; }; f"
 [core]
   editor = vim
