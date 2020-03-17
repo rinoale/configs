@@ -747,7 +747,7 @@ set nopaste
 " 行番号を表示する。
 set number
 " カーソルを左右に移動させる。
-set whichwrap=b,s,h,l,[,],<,>,~
+set whichwrap=b,s,h,l,[,],~
 
 " indent
 " タブ入れを複数の空白入力に置き換える。
