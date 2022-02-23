@@ -810,3 +810,5 @@ noremap h gT
 noremap j :wincmd h<cr>
 noremap k :wincmd l<cr>
 noremap l gt
+
+command -nargs=0 Tabr :.+1,$tabdo :q
