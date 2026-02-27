@@ -1,5 +1,9 @@
+```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+```
+```
 vim -c 'set shortmess=at' +PlugInstall! +qall
+```
 
 # change vim-buffergator keymap for opening from viewport
 * modify the file ~/.vim/plugged/vim-buffergator/autoload/buffergator.vim
