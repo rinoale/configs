@@ -6,3 +6,6 @@
   stager = "!f() { git diff --name-only | awk '{ filename=$0; system(\"git diff \"$0); printf \"Stage this change?(y/n):\"; getline name < \"/dev/tty\"; if(name == \"y\") { system(\"git add \"filename) }; }'; }; f"
 [core]
   editor = vim
+[user]
+	email = rinoale@hanmail,net
+	name = rinoale

@@ -23,3 +23,5 @@ function dirs_in_dir() {
 }
 
 alias vergems=gems_with_version
+
+alias tms=~/git/configs/tmux/tmux_2x2.sh
