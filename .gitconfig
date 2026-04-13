@@ -1,3 +1,9 @@
+[i18n]
+  commitEncoding = utf-8
+  logOutputEncoding = utf-8
+[user]
+  email = rinoale@hanmail.net
+  name = rinoale
 [alias]
   lam = log --pretty=format:'%C(yellow)%h%Creset %s %C(dim red)by %aN%Creset %C(bold cyan)%ar%Creset'
   lad = log --pretty=format:'%C(yellow)%h%Creset %s %C(dim red)by %aN%Creset %C(bold cyan)%ar%Creset' --graph
@@ -6,6 +12,3 @@
   stager = "!f() { git diff --name-only | awk '{ filename=$0; system(\"git diff \"$0); printf \"Stage this change?(y/n):\"; getline name < \"/dev/tty\"; if(name == \"y\") { system(\"git add \"filename) }; }'; }; f"
 [core]
   editor = vim
-[user]
-	email = rinoale@hanmail,net
-	name = rinoale
