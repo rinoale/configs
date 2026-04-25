@@ -49,6 +49,12 @@ Plug 'leafgarland/typescript-vim',     { 'for': ['typescript', 'typescriptreact'
 Plug 'MaxMEllon/vim-jsx-pretty',       { 'for': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] }
 
 " ---------------------------------------------------------------------------
+" Rust (loaded only for rust files)
+" ---------------------------------------------------------------------------
+Plug 'rust-lang/rust.vim',         { 'for': 'rust' }
+Plug 'neoclide/coc.nvim',          { 'for': 'rust', 'branch': 'release'}
+
+" ---------------------------------------------------------------------------
 " C# (loaded only for cs files)
 " ---------------------------------------------------------------------------
 Plug 'oranget/vim-csharp',         { 'for': 'cs' }
@@ -127,6 +133,7 @@ let g:lightline = {
 nmap <silent> <C-p> :Files<CR>
 nmap <silent> ,b    :Buffers<CR>
 nmap <silent> ,rg   :Rg<CR>
+nmap <silent> <C-f> :Rg<CR>
 
 " --- NERDTree ---
 let g:NERDTreeMinimalUI = 1
@@ -138,8 +145,12 @@ vmap <Enter> <Plug>(EasyAlign)
 " Normal mode: ga + motion + alignment char
 nmap ga <Plug>(EasyAlign)
 
+" --- coc.nvim ---
+let g:coc_global_extensions = ['coc-rust-analyzer']
+
 " --- Python syntax ---
 let g:python_highlight_all = 1
+
 
 " =============================================================================
 " Key mappings
@@ -179,7 +190,7 @@ function! s:ShowCheat()
     \ '--- fzf ---',
     \ '  Ctrl-p     find files',
     \ '  ,b         list buffers',
-    \ '  ,rg        search text (ripgrep)',
+    \ '  ,rg / C-f  search text (ripgrep)',
     \ '',
     \ '--- Easy Align ---',
     \ '  Enter      align selection (visual mode, then =/:.|,)',
@@ -192,6 +203,14 @@ function! s:ShowCheat()
     \ '  i          open in horizontal split',
     \ '  t          open in new tab',
     \ '',
+    \ '--- Buffer Panel ---',
+    \ '  F2         toggle buffer panel (bottom)',
+    \ '  Enter      open selected buffer in main window',
+    \ '  d          delete selected buffer (in panel)',
+    \ '  r          refresh list (in panel)',
+    \ '  q / F2     close panel',
+    \ '  dbl-click  open selected buffer (mouse)',
+    \ '',
     \ '--- Buffer/Tab ---',
     \ '  ,Up        next buffer',
     \ '  ,Down      previous buffer',
@@ -202,6 +221,34 @@ function! s:ShowCheat()
     \ '--- Zoom ---',
     \ '  ,z         zoom current window (fullscreen)',
     \ '  ,Z         close zoom (back to splits)',
+    \ '',
+    \ '--- coc.nvim (commands) ---',
+    \ '  :CocInstall {ext}       install extension (e.g. coc-rust-analyzer)',
+    \ '  :CocUninstall {ext}     uninstall extension',
+    \ '  :CocList extensions     list installed extensions',
+    \ '  :CocUpdate              update all extensions',
+    \ '  :CocConfig              open coc-settings.json',
+    \ '  :CocRestart             restart coc server',
+    \ '  :CocInfo                show coc info/log',
+    \ '  :CocDiagnostics         list all diagnostics',
+    \ '  :CocList commands       list available commands',
+    \ '  :CocList outline        symbol outline of current file',
+    \ '  :CocList symbols        workspace symbols',
+    \ '  :CocAction              pick a code action',
+    \ '  :CocFix                 apply quickfix for current line',
+    \ '  :CocCommand             run a coc command',
+    \ '',
+    \ '--- coc.nvim (rust-analyzer) ---',
+    \ '  :CocCommand rust-analyzer.run              run file',
+    \ '  :CocCommand rust-analyzer.runFlycheck       run flycheck',
+    \ '  :CocCommand rust-analyzer.expandMacro       expand macro',
+    \ '  :CocCommand rust-analyzer.joinLines         join lines',
+    \ '  :CocCommand rust-analyzer.parentModule      go to parent module',
+    \ '  :CocCommand rust-analyzer.openDocs          open docs.rs for symbol',
+    \ '  :CocCommand rust-analyzer.reload            reload workspace',
+    \ '  :CocCommand rust-analyzer.syntaxTree        show syntax tree',
+    \ '  :CocCommand rust-analyzer.matchingBrace     jump to matching brace',
+    \ '  :CocCommand rust-analyzer.upgrade           upgrade rust-analyzer',
     \ '',
     \ '--- Misc ---',
     \ '  Esc Esc    clear search highlight',
