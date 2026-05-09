@@ -43,7 +43,7 @@ function! s:Refresh()
   silent %delete _
   let l:main_bufnr = winbufnr(s:FindMainWin())
   let l:lines = []
-  for l:b in filter(range(1, bufnr('$')), 'buflisted(v:val) && bufexists(v:val)')
+  for l:b in filter(range(1, bufnr('$')), 'buflisted(v:val) && bufexists(v:val) && getbufvar(v:val, "&buftype") !=# "terminal"')
     let l:name = bufname(l:b)
     let l:name = empty(l:name) ? '[No Name]' : fnamemodify(l:name, ':t')
     let l:mod = getbufvar(l:b, '&modified') ? ' [+]' : ''
