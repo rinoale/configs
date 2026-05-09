@@ -49,6 +49,12 @@ Plug 'leafgarland/typescript-vim',     { 'for': ['typescript', 'typescriptreact'
 Plug 'MaxMEllon/vim-jsx-pretty',       { 'for': ['javascript', 'javascriptreact', 'typescript', 'typescriptreact'] }
 
 " ---------------------------------------------------------------------------
+" Rust (loaded only for rust files)
+" ---------------------------------------------------------------------------
+Plug 'rust-lang/rust.vim',         { 'for': 'rust' }
+Plug 'neoclide/coc.nvim',          { 'for': 'rust', 'branch': 'release'}
+
+" ---------------------------------------------------------------------------
 " C# (loaded only for cs files)
 " ---------------------------------------------------------------------------
 Plug 'oranget/vim-csharp',         { 'for': 'cs' }
@@ -98,7 +104,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Clear search highlight
-nmap <Esc><Esc> :nohlsearch<CR>
+nmap <silent> <C-l> :nohlsearch<CR>
 
 " Backup/swap
 set backup
@@ -127,6 +133,7 @@ let g:lightline = {
 nmap <silent> <C-p> :Files<CR>
 nmap <silent> ,b    :Buffers<CR>
 nmap <silent> ,rg   :Rg<CR>
+nmap <silent> <C-f> :Rg<CR>
 
 " --- NERDTree ---
 let g:NERDTreeMinimalUI = 1
@@ -138,8 +145,12 @@ vmap <Enter> <Plug>(EasyAlign)
 " Normal mode: ga + motion + alignment char
 nmap ga <Plug>(EasyAlign)
 
+" --- coc.nvim ---
+let g:coc_global_extensions = ['coc-rust-analyzer']
+
 " --- Python syntax ---
 let g:python_highlight_all = 1
+
 
 " =============================================================================
 " Key mappings
@@ -166,47 +177,99 @@ noremap <Space>s. :<C-u>source $MYVIMRC<CR>
 command! Cheat call s:ShowCheat()
 function! s:ShowCheat()
   new
-  setlocal buftype=nofile bufhidden=wipe noswapfile nowrap
+  setlocal buftype=nofile bufhidden=wipe noswapfile nowrap filetype=markdown
+  syntax match CheatCode /`[^`]\+`/
+  highlight CheatCode ctermfg=cyan guifg=#56b6c2
   file [Cheatsheet]
   call setline(1, [
-    \ '=== Cheatsheet ===',
+    \ '# Cheatsheet',
     \ '',
-    \ '--- Commentary ---',
-    \ '  gcc        toggle comment (line)',
-    \ '  gc         toggle comment (visual)',
-    \ '  gcap       comment paragraph',
+    \ '## Commentary',
+    \ '- `gcc` — toggle comment (line)',
+    \ '- `gc` — toggle comment (visual)',
+    \ '- `gcap` — comment paragraph',
     \ '',
-    \ '--- fzf ---',
-    \ '  Ctrl-p     find files',
-    \ '  ,b         list buffers',
-    \ '  ,rg        search text (ripgrep)',
+    \ '## fzf',
+    \ '- `Ctrl-p` — find files',
+    \ '- `,b` — list buffers',
+    \ '- `,rg` / `C-f` — search text (ripgrep)',
     \ '',
-    \ '--- Easy Align ---',
-    \ '  Enter      align selection (visual mode, then =/:.|,)',
-    \ '  ga         align with motion (e.g. gaip=)',
+    \ '## Easy Align',
+    \ '- `Enter` — align selection (visual mode, then `=` `/` `:` `.` `|` `,`)',
+    \ '- `ga` — align with motion (e.g. `gaip=`)',
     \ '',
-    \ '--- NERDTree ---',
-    \ '  Ctrl-e     toggle file tree',
-    \ '  Enter      open in current window',
-    \ '  s          open in vertical split',
-    \ '  i          open in horizontal split',
-    \ '  t          open in new tab',
+    \ '## NERDTree',
+    \ '- `Ctrl-e` — toggle file tree',
+    \ '- `Enter` — open in current window',
+    \ '- `s` — open in vertical split',
+    \ '- `i` — open in horizontal split',
+    \ '- `t` — open in new tab',
     \ '',
-    \ '--- Buffer/Tab ---',
-    \ '  ,Up        next buffer',
-    \ '  ,Down      previous buffer',
-    \ '  ,Right     next tab',
-    \ '  ,Left      previous tab',
-    \ '  bd         delete buffer',
+    \ '## Buffer Panel',
+    \ '- `F2` — toggle buffer panel (bottom)',
+    \ '- `Enter` — open selected buffer in main window',
+    \ '- `d` — delete selected buffer (in panel)',
+    \ '- `r` — refresh list (in panel)',
+    \ '- `q` / `F2` — close panel',
+    \ '- `dbl-click` — open selected buffer (mouse)',
     \ '',
-    \ '--- Zoom ---',
-    \ '  ,z         zoom current window (fullscreen)',
-    \ '  ,Z         close zoom (back to splits)',
+    \ '## Buffer/Tab',
+    \ '- `,Up` — next buffer',
+    \ '- `,Down` — previous buffer',
+    \ '- `,Right` — next tab',
+    \ '- `,Left` — previous tab',
+    \ '- `bd` — delete buffer',
     \ '',
-    \ '--- Misc ---',
-    \ '  Esc Esc    clear search highlight',
-    \ '  Space .    edit vimrc',
-    \ '  Space s.   reload vimrc',
-    \ '  :Cheat     this cheatsheet',
+    \ '## Window Move',
+    \ '- `Ctrl-W H` — move window to far left (vertical)',
+    \ '- `Ctrl-W J` — move window to bottom (horizontal)',
+    \ '- `Ctrl-W K` — move window to top (horizontal)',
+    \ '- `Ctrl-W L` — move window to far right (vertical)',
+    \ '',
+    \ '## Zoom',
+    \ '- `,z` — zoom current window (fullscreen)',
+    \ '- `,Z` — close zoom (back to splits)',
+    \ '',
+    \ '## coc.nvim (commands)',
+    \ '- `:CocInstall {ext}` — install extension (e.g. coc-rust-analyzer)',
+    \ '- `:CocUninstall {ext}` — uninstall extension',
+    \ '- `:CocList extensions` — list installed extensions',
+    \ '- `:CocUpdate` — update all extensions',
+    \ '- `:CocConfig` — open coc-settings.json',
+    \ '- `:CocRestart` — restart coc server',
+    \ '- `:CocInfo` — show coc info/log',
+    \ '- `:CocDiagnostics` — list all diagnostics',
+    \ '- `:CocList commands` — list available commands',
+    \ '- `:CocList outline` — symbol outline of current file',
+    \ '- `:CocList symbols` — workspace symbols',
+    \ '- `:CocAction` — pick a code action',
+    \ '- `:CocFix` — apply quickfix for current line',
+    \ '- `:CocCommand` — run a coc command',
+    \ '',
+    \ '## coc.nvim (rust-analyzer)',
+    \ '- `:CocCommand rust-analyzer.run` — run file',
+    \ '- `:CocCommand rust-analyzer.runFlycheck` — run flycheck',
+    \ '- `:CocCommand rust-analyzer.expandMacro` — expand macro',
+    \ '- `:CocCommand rust-analyzer.joinLines` — join lines',
+    \ '- `:CocCommand rust-analyzer.parentModule` — go to parent module',
+    \ '- `:CocCommand rust-analyzer.openDocs` — open docs.rs for symbol',
+    \ '- `:CocCommand rust-analyzer.reload` — reload workspace',
+    \ '- `:CocCommand rust-analyzer.syntaxTree` — show syntax tree',
+    \ '- `:CocCommand rust-analyzer.matchingBrace` — jump to matching brace',
+    \ '- `:CocCommand rust-analyzer.upgrade` — upgrade rust-analyzer',
+    \ '',
+    \ '## Terminal',
+    \ '- `:below term` — open terminal (horizontal split below)',
+    \ '- `:vert rightb term` — open terminal (vertical split right)',
+    \ '- `:vert lefta term` — open terminal (vertical split left)',
+    \ '- `:tab term` — open terminal (new tab)',
+    \ '- `Ctrl-W N` — terminal → normal mode (scroll/yank)',
+    \ '- `i` / `a` — normal → terminal mode (type commands)',
+    \ '',
+    \ '## Misc',
+    \ '- `Ctrl-L` — clear search highlight',
+    \ '- `Space .` — edit vimrc',
+    \ '- `Space s.` — reload vimrc',
+    \ '- `:Cheat` — this cheatsheet',
     \ ])
 endfunction
