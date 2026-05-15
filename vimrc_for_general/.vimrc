@@ -147,6 +147,17 @@ nmap ga <Plug>(EasyAlign)
 
 " --- coc.nvim ---
 let g:coc_global_extensions = ['coc-rust-analyzer']
+if executable('wslview')
+  let g:coc_open_url_command = 'wslview'
+endif
+
+augroup rust_coc_mappings
+  autocmd!
+  " Hover docs for the symbol under cursor.
+  autocmd FileType rust nnoremap <silent><buffer> K :call CocActionAsync('doHover')<CR>
+  " Open external rustdoc/docs.rs page for the symbol under cursor.
+  autocmd FileType rust nnoremap <silent><buffer> ,d :CocCommand rust-analyzer.openDocs<CR>
+augroup END
 
 " --- Python syntax ---
 let g:python_highlight_all = 1
@@ -245,6 +256,8 @@ function! s:ShowCheat()
     \ '- `:CocAction` — pick a code action',
     \ '- `:CocFix` — apply quickfix for current line',
     \ '- `:CocCommand` — run a coc command',
+    \ '- `K` — show hover docs for symbol under cursor in Rust buffers',
+    \ '- `,d` — open Rust docs for symbol under cursor in Rust buffers',
     \ '',
     \ '## coc.nvim (rust-analyzer)',
     \ '- `:CocCommand rust-analyzer.run` — run file',
