@@ -5,6 +5,12 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 vim -c 'set shortmess=at' +PlugInstall! +qall
 ```
 
+# install bufpanel plugin
+```
+mkdir -p ~/.vim/plugin
+ln -s ~/git/configs/vimrc_for_general/plugin/bufpanel.vim ~/.vim/plugin/bufpanel.vim
+```
+
 # change vim-buffergator keymap for opening from viewport
 * modify the file ~/.vim/plugged/vim-buffergator/autoload/buffergator.vim
 * /Selection: show target and switch focus
