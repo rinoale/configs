@@ -173,6 +173,7 @@ nmap <silent> ,<Down>  :bprevious<CR>
 nmap <silent> ,<Right> :tabnext<CR>
 nmap <silent> ,<Left>  :tabprevious<CR>
 nmap <silent> bd :bdelete<CR>
+command! -nargs=0 Tabr :.+1,$tabdo :q
 
 " Zoom: open current buffer fullscreen, close to return
 nmap <silent> ,z :tab split<CR>
@@ -233,6 +234,7 @@ function! s:ShowCheat()
     \ '- `:tabm 0` — move current tab to first position',
     \ '- `:tabm` — move current tab to last position',
     \ '- `:tabm {N}` — move current tab after tab number N',
+    \ '- `:Tabr` — close tabs to the right',
     \ '- `bd` — delete buffer',
     \ '',
     \ '## Window Move',
