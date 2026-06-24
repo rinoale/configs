@@ -225,6 +225,8 @@ function! s:ShowCheat()
     \ '- `V}` — select to end of paragraph (linewise)',
     \ '- `vip` — select inner paragraph',
     \ '- `vap` — select paragraph including surrounding blank line',
+    \ '- `b` / `B` — move to start of word / whitespace-separated WORD',
+    \ '- `vb` / `vB` — select to start of word / whitespace-separated WORD',
     \ '- `e` / `E` — move to end of word / whitespace-separated WORD',
     \ '- `vE` — select to end of whitespace-separated WORD',
     \ '- `viW` — select inner whitespace-separated WORD',
