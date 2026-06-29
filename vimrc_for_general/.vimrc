@@ -175,6 +175,14 @@ nmap <silent> ,<Left>  :tabprevious<CR>
 nmap <silent> bd :bdelete<CR>
 command! -nargs=0 Tabr :.+1,$tabdo :q
 
+" Disable accidental Shift+arrow page scrolling.
+nnoremap <S-Down> <Nop>
+vnoremap <S-Down> <Nop>
+inoremap <S-Down> <Nop>
+nnoremap <S-Up> <Nop>
+vnoremap <S-Up> <Nop>
+inoremap <S-Up> <Nop>
+
 " Zoom: open current buffer fullscreen, close to return
 nmap <silent> ,z :tab split<CR>
 nmap <silent> ,Z :tabclose<CR>
@@ -234,6 +242,14 @@ function! s:ShowCheat()
     \ '- `vE` — select to end of whitespace-separated WORD',
     \ '- `viW` — select inner whitespace-separated WORD',
     \ '- `vaW` — select WORD plus surrounding space',
+    \ '',
+    \ '## Cursor Jump',
+    \ '- `Ctrl-O` — jump back to previous cursor location',
+    \ '- `Ctrl-I` — jump forward again',
+    \ '- `:jumps` — show jump list',
+    \ '- ``` `` ``` — jump back to exact previous position',
+    \ '- `''''` — jump back to previous line position',
+    \ '- `g;` / `g,` — older/newer change position',
     \ '',
     \ '## NERDTree',
     \ '- `Ctrl-e` — toggle file tree',
