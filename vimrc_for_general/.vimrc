@@ -85,6 +85,7 @@ set hlsearch
 set ignorecase
 set smartcase
 set backspace=start,indent,eol
+set ttymouse=sgr
 set mouse=a
 set laststatus=2
 set noshowmode
